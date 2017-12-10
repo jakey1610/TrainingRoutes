@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<script src="jquery-3.2.1.min.js"></script>
+	<script>
+		var dict = {
+			'Sausage, Egg & Cheese McGriddles': 2.79,
+			'Double Cheeseburger':1.49,
+			'Premium Bacon Ranch Salad with Grilled Chicken':3.49,
+			'Chicken McNuggets(6 piece)':2.99,
+			'Sausage McMuffin with Egg':2.19,
+			'Big Mac':2.99,
+			'Cheeseburger':0.99,
+			'Hamburger':0.89,
+			'Medium French Fries':1.09,
+			'Baked Apple Pie':0.99,
+			'Coca-Cola Classic (Medium)':0.99,
+			'Latte (Medium)':1.59,
+			'Sprite (Medium)':0.99,
+			'Hash Brown':0.79,
+			'McChicken':2.59,
+			'Frappe Mocha (Medium)':2.19,
+			'Bacon Clubhouse Burger':4.29,
+			'Quarter Pounder with Cheese':2.99,
+			'McRib':2.69,
+			'Filet-O-Fish':2.89
+		};
+		function retrieve(){
+			var stringName = document.getElementById("strOrd").value;
+			var res = stringName.split(" ");
+			var quantityAm = res[0];
+			var item = res[1];
+			var tableNumb = res[2];
+			var priceAm = dict[item];
+			for(i = 0; i<quantityAm; i++){
+				$.ajax({
+			    type: "POST",
+			    url:  "ins.php",
+			    data: 'stringI='+item+'&price='+priceAm+'&tableNum='+tableNumb,
+			   });
+			}
+		    
+		}
+	</script>
+	<input type = "text" name = "stringOrder" id = "strOrd" />
+	<input type = "submit" value = "Submit" onclick = "retrieve();" />
+</html>
